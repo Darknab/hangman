@@ -1,6 +1,6 @@
 def get_random_word
   word = String.new
-  unless word.length >= 4 && word.length < 13 
+  unless word.length >= 6 && word.length < 15 
     word = File.readlines("google-10000-english-no-swears.txt").sample.strip
   end
   word
@@ -70,5 +70,14 @@ input = gets.chomp.capitalize
 player = Hangman.new(input)
 
 puts "Welcome, #{player.name}!"
-
-player.game
+loop do
+  puts "Do you want to start a new game?(yes/no)"
+  response = gets.chomp.downcase
+  if response == "yes"
+    player.game
+  elsif response == "no"
+    puts "All right, see you next time ;)"
+    break
+  else puts "Sorry I didn't understand, can you repeat please?"
+  end
+end
